@@ -17,6 +17,10 @@ Item kinds and their fields:
 - ``upgrade_card``: ``title``, ``text``, ``button_label``
 - ``user_profile``: ``name``, ``subtitle``, ``avatar_url``, ``avatar_initials``
 
+Set ``hide_default_nav`` (default ``True``) to ``False`` to keep
+Streamlit's auto-generated multipage navigation visible alongside the rail
+menu.
+
 The ``access`` field (``public``/``logged_in``/``admin``) is normalized and
 preserved but never evaluated by this package — filter items caller-side
 before passing the config to ``render()``.
@@ -70,6 +74,7 @@ DEFAULT_RAIL_SETTINGS: dict[str, Any] = {
     "sidebar_hover_width_px": 260,
     "sidebar_item_gap_px": 4,
     "sidebar_transition": "0.2s",
+    "hide_default_nav": True,
     "items": [],
 }
 
@@ -310,6 +315,9 @@ def normalize_settings(raw: Any) -> dict[str, Any]:
     transition = str(raw.get("sidebar_transition") or "").strip()
     if transition:
         defaults["sidebar_transition"] = transition
+
+    if "hide_default_nav" in raw:
+        defaults["hide_default_nav"] = bool(raw["hide_default_nav"])
 
     defaults["items"] = _normalize_items(raw.get("items"))
     return defaults

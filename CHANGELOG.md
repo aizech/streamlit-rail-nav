@@ -19,3 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `THEME_PRESETS` with nine named color palettes.
 - Brand logo/icon hover-swap with light/dark asset variants.
 - Optional callbacks: `on_theme_toggle`, `on_search`, `on_upgrade_click`.
+- `hide_default_nav` (default on) hides Streamlit's auto-generated multipage
+  navigation so it does not duplicate custom menu items.
+
+### Fixed
+
+- Badges (`badge_link` / `link` `badge`) no longer render while the sidebar is
+  collapsed into the rail.
+- Sidebar `search` inputs and `upgrade_card` buttons are themed to match the
+  configured sidebar palette.

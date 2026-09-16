@@ -41,6 +41,13 @@ section[data-testid='stSidebar']:not(:hover) .srn-brand-logo {
 }
 """
 
+_NAV_HIDE_CSS = """
+            /* Hide Streamlit's auto-generated multipage nav */
+            section[data-testid='stSidebar'] [data-testid='stSidebarNav'] {
+                display: none !important;
+            }
+"""
+
 
 def build_brand_icon_css(icon_url: str, height_px: int) -> str:
     return (
@@ -83,6 +90,7 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
             --srn-item-gap: {cfg.get("sidebar_item_gap_px", 4)}px;
             --srn-transition: {cfg["sidebar_transition"]};
         }}
+            {_NAV_HIDE_CSS if cfg.get("hide_default_nav") else ""}
             /* Apply sidebar background color */
             section[data-testid='stSidebar'] {{
                 background-color: var(--srn-bg) !important;
@@ -225,6 +233,11 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 display: none !important;
             }}
 
+            /* Badges only make sense next to their (hidden) labels */
+            section[data-testid='stSidebar']:not(:hover) [data-testid='stPageLink'] a::after {{
+                display: none !important;
+            }}
+
             section[data-testid='stSidebar']:not(:hover) .stButton {{
                 padding: 0 !important;
                 margin: 0 !important;
@@ -337,6 +350,30 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 font-size: 11px;
                 font-weight: 600;
                 margin-left: auto;
+            }}
+
+            /* Search input blends into the sidebar palette */
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] input {{
+                background-color: var(--srn-hover-bg) !important;
+                color: var(--srn-text) !important;
+                border-color: var(--srn-separator-color) !important;
+                border-radius: 8px !important;
+            }}
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] input::placeholder {{
+                color: var(--srn-text) !important;
+                opacity: 0.6 !important;
+            }}
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] > div > div {{
+                background-color: transparent !important;
+                border: none !important;
+            }}
+
+            /* Button directly after an upgrade card renders as a CTA */
+            section[data-testid='stSidebar'] [data-testid='stElementContainer']:has(.srn-upgrade-card)
+                + [data-testid='stElementContainer'] .stButton button {{
+                background-color: var(--srn-hover-bg) !important;
+                border: 1px solid var(--srn-separator-color) !important;
+                justify-content: center !important;
             }}
 
             /* Sidebar caption, small text, auth notices */

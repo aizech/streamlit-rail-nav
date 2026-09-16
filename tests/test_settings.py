@@ -230,3 +230,9 @@ def test_normalize_is_idempotent() -> None:
     twice = normalize_settings(once)
 
     assert once == twice
+
+
+def test_normalize_hide_default_nav() -> None:
+    assert normalize_settings({})["hide_default_nav"] is True
+    assert normalize_settings({"hide_default_nav": False})["hide_default_nav"] is False
+    assert normalize_settings({"hide_default_nav": 0})["hide_default_nav"] is False

@@ -98,3 +98,12 @@ def test_brand_icon_css() -> None:
     assert "background-image:url('data:image/png;base64,AAA')" in css
     assert "height:36px" in css
     assert "flex:0 0 36px" in css
+
+
+def test_default_nav_hidden_unless_disabled() -> None:
+    assert "stSidebarNav" in _css()
+    assert "stSidebarNav" not in _css({"hide_default_nav": False})
+
+
+def test_badges_hidden_in_rail_mode() -> None:
+    assert ":not(:hover) [data-testid='stPageLink'] a::after" in _css()

@@ -91,6 +91,7 @@ want to override. For local `logo_src`/`icon_src` files, pass
 | `sidebar_hover_width_px` | `260` | 180–360 (expanded width) |
 | `sidebar_item_gap_px` | `4` | 0–32 |
 | `sidebar_transition` | `0.2s` | CSS transition duration |
+| `hide_default_nav` | `true` | hide Streamlit's auto multipage nav |
 | `logo_src` / `logo_src_light` / `logo_src_dark` | `""` | shown while expanded |
 | `icon_src_light` / `icon_src_dark` | `""` | shown while collapsed |
 | `logo_height_px` | `44` | spacer height under brand |
