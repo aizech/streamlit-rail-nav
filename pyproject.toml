@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "streamlit-rail-nav"
+version = "0.1.0"
+description = "A collapsible icon-rail sidebar navigation for Streamlit that expands on hover. Pure Python, no frontend build."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [
+    { name = "aizech" },
+]
+keywords = ["streamlit", "sidebar", "navigation", "menu", "rail", "hover", "component"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: User Interfaces",
+]
+dependencies = [
+    "streamlit>=1.57,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.15",
+    "black>=25.0",
+    "build>=1.2",
+    "twine>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/aizech/streamlit-rail-nav"
+Repository = "https://github.com/aizech/streamlit-rail-nav"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/streamlit_rail_nav"]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# CSS selector lines inside string literals are legitimately long
+"src/streamlit_rail_nav/styles.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
