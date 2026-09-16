@@ -107,3 +107,27 @@ def test_default_nav_hidden_unless_disabled() -> None:
 
 def test_badges_hidden_in_rail_mode() -> None:
     assert ":not(:hover) [data-testid='stPageLink'] a::after" in _css()
+
+
+def test_sidebar_top_padding_is_stable_across_rail_states() -> None:
+    css = _css()
+
+    assert "section[data-testid='stSidebar'] > div:first-child" in css
+    assert "[data-testid='stSidebarContent']" in css
+    assert "padding-top: 12px !important" in css
+
+
+def test_custom_items_have_explicit_spacing() -> None:
+    css = _css()
+
+    assert ".srn-menu-header" in css
+    assert ".srn-menu-spacer" in css
+    assert "padding-top: 8px !important" in css
+
+
+def test_search_uses_native_input_surface_and_visible_icon() -> None:
+    css = _css()
+
+    assert "[data-baseweb='input']" in css
+    assert "[data-testid='stIconMaterial']" in css
+    assert "height: 40px !important" in css

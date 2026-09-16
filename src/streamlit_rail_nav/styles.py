@@ -96,6 +96,14 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 background-color: var(--srn-bg) !important;
             }}
 
+            /* Keep the first menu item at the same vertical position while
+               the sidebar changes width on hover. */
+            section[data-testid='stSidebar'] > div:first-child,
+            section[data-testid='stSidebar'] [data-testid='stSidebarContent'],
+            section[data-testid='stSidebar'] [data-testid='stSidebarUserContent'] {{
+                padding-top: 12px !important;
+            }}
+
             /* Page Links and Buttons - Expanded State */
             section[data-testid='stSidebar'] [data-testid='stPageLink'] a,
             section[data-testid='stSidebar'] .stButton button {{
@@ -168,7 +176,7 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
             section[data-testid='stSidebar']:not(:hover) [data-testid='stSidebarUserContent'] {{
                 width: var(--srn-collapsed-width) !important;
                 min-width: var(--srn-collapsed-width) !important;
-                padding: 0 !important;
+                padding: 12px 0 0 !important;
             }}
 
             section[data-testid='stSidebar']:not(:hover) [data-testid='stElementContainer'],
@@ -213,6 +221,16 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
             section[data-testid='stSidebar'] [data-testid='stElementContainer'] {{
                 padding-top: 0 !important;
                 padding-bottom: 0 !important;
+            }}
+
+            /* Custom non-widget items need their own predictable rhythm. */
+            section[data-testid='stSidebar'] .srn-menu-header {{
+                line-height: 16px;
+                margin: 4px 0 0;
+            }}
+            section[data-testid='stSidebar'] .srn-menu-spacer {{
+                display: block;
+                width: 100%;
             }}
 
             section[data-testid='stSidebar'] [data-testid='stPageLink'] a p,
@@ -360,23 +378,43 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
             }}
 
             /* Search input blends into the sidebar palette */
-            section[data-testid='stSidebar'] [data-testid='stTextInput'] > div > div {{
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] {{
+                margin: 4px 0 !important;
+            }}
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-baseweb='input'] {{
+                height: 40px !important;
+                min-height: 40px !important;
                 background-color: var(--srn-bg) !important;
                 border: 1px solid var(--srn-separator-color) !important;
                 border-radius: 8px !important;
+                box-shadow: none !important;
+            }}
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-baseweb='input'] > div {{
+                background-color: transparent !important;
             }}
             section[data-testid='stSidebar'] [data-testid='stTextInput'] input {{
+                height: 38px !important;
                 background-color: transparent !important;
                 color: var(--srn-text) !important;
+                font-size: 13px !important;
             }}
             section[data-testid='stSidebar'] [data-testid='stTextInput'] input::placeholder {{
                 color: var(--srn-text) !important;
                 opacity: 0.6 !important;
             }}
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-testid='stIconMaterial'] {{
+                color: var(--srn-icon) !important;
+                font-size: 18px !important;
+            }}
 
             /* Button directly after an upgrade card renders as a CTA */
             section[data-testid='stSidebar'] [data-testid='stElementContainer']:has(.srn-upgrade-card)
+                + [data-testid='stElementContainer'] {{
+                padding-top: 8px !important;
+            }}
+            section[data-testid='stSidebar'] [data-testid='stElementContainer']:has(.srn-upgrade-card)
                 + [data-testid='stElementContainer'] .stButton button {{
+                height: 42px !important;
                 background-color: var(--srn-bg) !important;
                 border: 1px solid var(--srn-separator-color) !important;
                 justify-content: center !important;
