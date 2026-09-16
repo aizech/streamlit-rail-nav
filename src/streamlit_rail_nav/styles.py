@@ -377,7 +377,7 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
 
             section[data-testid='stSidebar'] .srn-upgrade-card {{
                 margin: 8px 12px 0 12px;
-                padding: 12px 12px 8px 12px;
+                padding: 12px 12px 16px 12px;
                 border-radius: 8px 8px 0 0;
                 border: 1px solid var(--srn-separator-color);
                 border-bottom: none;
@@ -406,26 +406,31 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 margin-left: auto;
             }}
 
-            /* Search input blends into the sidebar palette */
+            /* Search input blends into the sidebar palette. The background
+               and border live on the outermost, guaranteed-stable
+               [data-testid='stTextInput'] container itself, and every
+               descendant is forced transparent -- this avoids depending on
+               BaseWeb's internal wrapper attribute, which has changed
+               names across versions ("input" vs "base-input"). */
             section[data-testid='stSidebar']:hover [data-testid='stTextInput'] {{
                 width: calc(100% - 32px) !important;
                 max-width: 320px !important;
                 margin: 4px auto !important;
-            }}
-            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-baseweb='base-input'] {{
                 height: 40px !important;
                 min-height: 40px !important;
                 background-color: var(--srn-bg) !important;
                 border: 1px solid var(--srn-separator-color) !important;
                 border-radius: 8px !important;
                 box-shadow: none !important;
+                overflow: hidden !important;
             }}
-            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-baseweb='base-input'] > div {{
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] * {{
                 background-color: transparent !important;
+                box-shadow: none !important;
+                border: none !important;
             }}
             section[data-testid='stSidebar'] [data-testid='stTextInput'] input {{
                 height: 38px !important;
-                background-color: transparent !important;
                 color: var(--srn-text) !important;
                 font-size: 13px !important;
             }}

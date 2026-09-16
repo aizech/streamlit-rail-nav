@@ -128,7 +128,7 @@ def test_custom_items_have_explicit_spacing() -> None:
 def test_search_uses_native_input_surface_and_visible_icon() -> None:
     css = _css()
 
-    assert "[data-baseweb='base-input']" in css
+    assert "[data-testid='stTextInput'] *" in css
     assert "[data-testid='stIconMaterial']" in css
     assert "height: 40px !important" in css
     assert "max-width: 320px !important" in css
@@ -153,6 +153,7 @@ def test_upgrade_card_and_button_form_one_unit() -> None:
     assert "border-bottom: none" in css
     assert "border-radius: 0 0 8px 8px !important" in css
     assert "background-color: var(--srn-hover-bg) !important" in css
+    assert "padding: 12px 12px 16px 12px" in css
 
 
 def test_search_icon_is_themed() -> None:
