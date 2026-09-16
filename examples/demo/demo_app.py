@@ -20,7 +20,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-preset_name = st.session_state.get("preset", "Slate Orange")
+preset_name = st.session_state.get("preset", "Corpus Analytica")
 
 config = {
     **THEME_PRESETS.get(preset_name, {}),
@@ -64,7 +64,7 @@ config = {
 
 
 def _toggle_theme() -> None:
-    current = st.session_state.get("preset", "Slate Orange")
+    current = st.session_state.get("preset", "Corpus Analytica")
     st.session_state["preset"] = (
         "Black & White (Dark)"
         if current != "Black & White (Dark)"

@@ -49,6 +49,14 @@ def test_rail_css_uses_configured_values() -> None:
     assert "--srn-hover-width: 300px" in css
 
 
+def test_hover_text_color_applied_on_item_hover() -> None:
+    css = _css()
+
+    assert "a:hover p" in css
+    assert "button:hover p" in css
+    assert "color: var(--srn-hover-text) !important" in css
+
+
 def test_rail_css_scopes_rules_to_sidebar() -> None:
     css = _css()
 

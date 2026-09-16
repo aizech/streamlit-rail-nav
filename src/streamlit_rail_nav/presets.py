@@ -3,38 +3,53 @@
 Each preset maps a subset of the settings keys (see
 :mod:`streamlit_rail_nav.settings`) to color values. Apply a preset by merging
 it over a settings dict before calling ``render()``.
+
+Colors are chosen so every state passes WCAG AA contrast for normal text
+(>= 4.5:1) against its own background:
+
+- ``sidebar_bg`` / ``sidebar_text_color`` -- the resting state.
+- ``sidebar_hover_bg`` / ``sidebar_hover_text_color`` -- momentary rollover;
+  ``sidebar_hover_bg`` is typically the boldest, most saturated brand color.
+- ``sidebar_active_bg`` -- the persistent "selected page" background. It is
+  deliberately a *subtle* tint close to ``sidebar_bg`` rather than the loud
+  hover color, so the label text (which always uses ``sidebar_text_color``,
+  not a separate active-text setting) stays readable. ``sidebar_focus_outline``
+  supplies the accent color for the selected item's icon, giving a clear
+  selection indicator without sacrificing contrast.
 """
 
 from __future__ import annotations
 
 THEME_PRESETS: dict[str, dict[str, str]] = {
     "Anthropic Style": {
-        "sidebar_bg": "#e8e7dd",
-        "sidebar_text_color": "#3d3a2a",
-        "sidebar_icon_color": "#3d3a2a",
-        "sidebar_hover_bg": "#BB5A38",
-        "sidebar_hover_text_color": "#D3D2CA",
-        "sidebar_active_bg": "#BB5A38",
-        "sidebar_focus_outline": "#BB5A38",
-        "sidebar_separator_color": "#3D3A2A",
+        # Colors from Anthropic's public brand guidelines
+        # (github.com/anthropics/skills, skills/brand-guidelines).
+        "sidebar_bg": "#E8E6DC",
+        "sidebar_text_color": "#141413",
+        "sidebar_icon_color": "#141413",
+        "sidebar_hover_bg": "#D97757",
+        "sidebar_hover_text_color": "#141413",
+        "sidebar_active_bg": "#F0EEE6",
+        "sidebar_focus_outline": "#D97757",
+        "sidebar_separator_color": "#D1CFC5",
     },
     "Ocean Palette": {
         "sidebar_bg": "#395B77",
         "sidebar_text_color": "#F6F7EF",
         "sidebar_icon_color": "#F6F7EF",
         "sidebar_hover_bg": "#7BA8CA",
-        "sidebar_hover_text_color": "#395B77",
-        "sidebar_active_bg": "#A8DAFF",
+        "sidebar_hover_text_color": "#0B1220",
+        "sidebar_active_bg": "#4C6B84",
         "sidebar_focus_outline": "#A8DAFF",
         "sidebar_separator_color": "#7BA8CA",
     },
-    "Slate Orange": {
+    "Corpus Analytica": {
         "sidebar_bg": "#263741",
         "sidebar_text_color": "#EEF2F1",
         "sidebar_icon_color": "#EEF2F1",
         "sidebar_hover_bg": "#EA9216",
         "sidebar_hover_text_color": "#263741",
-        "sidebar_active_bg": "#C3CCD2",
+        "sidebar_active_bg": "#374750",
         "sidebar_focus_outline": "#C3CCD2",
         "sidebar_separator_color": "#C3CCD2",
     },
@@ -43,8 +58,8 @@ THEME_PRESETS: dict[str, dict[str, str]] = {
         "sidebar_text_color": "#E5E1DD",
         "sidebar_icon_color": "#E5E1DD",
         "sidebar_hover_bg": "#407E8C",
-        "sidebar_hover_text_color": "#E5E1DD",
-        "sidebar_active_bg": "#A58D66",
+        "sidebar_hover_text_color": "#FFFFFF",
+        "sidebar_active_bg": "#204D60",
         "sidebar_focus_outline": "#A58D66",
         "sidebar_separator_color": "#C0D5D6",
     },
@@ -54,7 +69,7 @@ THEME_PRESETS: dict[str, dict[str, str]] = {
         "sidebar_icon_color": "#EEEEEE",
         "sidebar_hover_bg": "#3A4750",
         "sidebar_hover_text_color": "#EEEEEE",
-        "sidebar_active_bg": "#EA9216",
+        "sidebar_active_bg": "#515D65",
         "sidebar_focus_outline": "#EA9216",
         "sidebar_separator_color": "#3A4750",
     },
@@ -64,7 +79,7 @@ THEME_PRESETS: dict[str, dict[str, str]] = {
         "sidebar_icon_color": "#D6BD98",
         "sidebar_hover_bg": "#40534C",
         "sidebar_hover_text_color": "#D6BD98",
-        "sidebar_active_bg": "#677D6A",
+        "sidebar_active_bg": "#354E4E",
         "sidebar_focus_outline": "#677D6A",
         "sidebar_separator_color": "#40534C",
     },
@@ -87,27 +102,5 @@ THEME_PRESETS: dict[str, dict[str, str]] = {
         "sidebar_active_bg": "#3B4048",
         "sidebar_focus_outline": "#EBEBEB",
         "sidebar_separator_color": "#4A4F57",
-    },
-    "HALO Core Palette": {
-        "sidebar_bg": "#313841",
-        "sidebar_text_color": "#EEEEEE",
-        "sidebar_icon_color": "#EEEEEE",
-        "sidebar_hover_bg": "#3A4750",
-        "sidebar_hover_text_color": "#EEEEEE",
-        "sidebar_active_bg": "#EA9216",
-        "sidebar_focus_outline": "#EA9216",
-        "sidebar_separator_color": "#3A4750",
-        "sidebar_separator_color_light": "#3A4750",
-        "sidebar_separator_color_dark": "#3A4750",
-        "sidebar_rail_bg": "#313841",
-        "sidebar_rail_text_color": "#EEEEEE",
-        "input_bg": "#313841",
-        "input_text_color": "#EEEEEE",
-        "input_border_color": "#3A4750",
-        "input_border_hover": "#EA9216",
-        "input_hover_bg": "#3A4750",
-        "input_focus_outline": "#EA9216",
-        "theme_mode": "dark",
-        "logo_src": "assets/logo_dark.png",
     },
 }

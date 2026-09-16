@@ -130,6 +130,22 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 background-color: var(--srn-hover-bg) !important;
             }}
 
+            /* Rollover text/icon color -- hover_bg is usually the boldest
+               brand color, so it needs its own contrasting text color
+               rather than the resting sidebar_text_color. */
+            section[data-testid='stSidebar'] [data-testid='stPageLink'] a:hover p,
+            section[data-testid='stSidebar'] [data-testid='stPageLink'] a:hover span,
+            section[data-testid='stSidebar'] .stButton button:hover p,
+            section[data-testid='stSidebar'] .stButton button:hover span {{
+                color: var(--srn-hover-text) !important;
+            }}
+            section[data-testid='stSidebar'] [data-testid='stPageLink'] a:hover svg,
+            section[data-testid='stSidebar'] .stButton button:hover svg,
+            section[data-testid='stSidebar'] .stButton button:hover [data-testid='stIconMaterial'] {{
+                fill: var(--srn-hover-text) !important;
+                color: var(--srn-hover-text) !important;
+            }}
+
             /* Active State */
             section[data-testid='stSidebar'] [data-testid='stPageLink'] a[aria-current='page'],
             section[data-testid='stSidebar'] [data-testid='stPageLink'] a[data-active='true'],

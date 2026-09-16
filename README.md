@@ -127,9 +127,17 @@ render({**cfg, "items": items})
 
 ### Theme presets
 
-`from streamlit_rail_nav import THEME_PRESETS` — nine palettes:
-Anthropic Style, Ocean Palette, Slate Orange, Navy Gold Aqua, Cadet Yam,
-Matcha Almond, Black & White (Light), Black & White (Dark), HALO Core Palette.
+`from streamlit_rail_nav import THEME_PRESETS` — eight palettes:
+Anthropic Style, Ocean Palette, Corpus Analytica, Navy Gold Aqua, Cadet Yam,
+Matcha Almond, Black & White (Light), Black & White (Dark).
+
+Every preset passes WCAG AA contrast (>= 4.5:1) for both the resting state
+(`sidebar_bg`/`sidebar_text_color`) and the hover state
+(`sidebar_hover_bg`/`sidebar_hover_text_color`). `sidebar_active_bg` is a
+subtle tint close to `sidebar_bg` rather than a loud accent color, so the
+persistent "selected page" background never fights with the label text;
+`sidebar_focus_outline` carries the accent color for the selected item's
+icon instead.
 
 ```python
 render({**THEME_PRESETS["Ocean Palette"], "items": [...]})
@@ -164,5 +172,4 @@ python -m build
 ## License
 
 MIT — see [LICENSE](LICENSE). Derived conceptually from
-[Socvest/streamlit-on-Hover-tabs](https://github.com/Socvest/streamlit-on-Hover-tabs)
-(MIT), extracted from [halo-core](https://github.com/aizech/halo-core).
+[Socvest/streamlit-on-Hover-tabs](https://github.com/Socvest/streamlit-on-Hover-tabs) (MIT)
