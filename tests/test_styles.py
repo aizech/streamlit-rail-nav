@@ -132,6 +132,17 @@ def test_search_uses_native_input_surface_and_visible_icon() -> None:
     assert "[data-baseweb='input']" in css
     assert "[data-testid='stIconMaterial']" in css
     assert "height: 40px !important" in css
+    assert "max-width: 320px !important" in css
+    assert "color: var(--srn-text) !important" in css
+
+
+def test_expanded_custom_controls_use_compact_widths() -> None:
+    css = _css()
+
+    assert ".srn-menu-header" in css
+    assert "margin: 4px 0 8px" in css
+    assert "max-width: 220px !important" in css
+    assert "max-width: 320px !important" in css
 
 
 def test_rail_controls_center_icons() -> None:

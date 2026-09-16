@@ -254,7 +254,7 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
             /* Custom non-widget items need their own predictable rhythm. */
             section[data-testid='stSidebar'] .srn-menu-header {{
                 line-height: 16px;
-                margin: 4px 0 0;
+                margin: 4px 0 8px;
             }}
             section[data-testid='stSidebar'] .srn-menu-spacer {{
                 display: block;
@@ -406,8 +406,13 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
             }}
 
             /* Search input blends into the sidebar palette */
-            section[data-testid='stSidebar'] [data-testid='stTextInput'] {{
-                margin: 4px 0 !important;
+            section[data-testid='stSidebar']:hover [data-testid='stTextInput'] {{
+                width: calc(100% - 32px) !important;
+                max-width: 320px !important;
+                margin: 4px auto !important;
+            }}
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] > div {{
+                background-color: var(--srn-bg) !important;
             }}
             section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-baseweb='input'] {{
                 height: 40px !important;
@@ -435,9 +440,21 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 font-size: 18px !important;
             }}
 
+            /* Keep icon-only theme controls compact when expanded. */
+            section[data-testid='stSidebar']:hover
+                [data-testid='stElementContainer']:has(.stButton button [data-testid='stIconMaterial']) {{
+                width: calc(100% - 32px) !important;
+                max-width: 220px !important;
+                margin: 4px auto !important;
+            }}
+
             /* Button directly after an upgrade card renders as a CTA */
             section[data-testid='stSidebar'] [data-testid='stElementContainer']:has(.srn-upgrade-card)
                 + [data-testid='stElementContainer'] {{
+                width: calc(100% - 32px) !important;
+                max-width: 320px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
                 padding-top: 8px !important;
             }}
             section[data-testid='stSidebar'] [data-testid='stElementContainer']:has(.srn-upgrade-card)
