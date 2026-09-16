@@ -123,7 +123,6 @@ def test_custom_items_have_explicit_spacing() -> None:
 
     assert ".srn-menu-header" in css
     assert ".srn-menu-spacer" in css
-    assert "padding-top: 8px !important" in css
 
 
 def test_search_uses_native_input_surface_and_visible_icon() -> None:
@@ -145,6 +144,21 @@ def test_expanded_custom_controls_use_compact_widths() -> None:
     assert "st-key-srn_upgrade_" in css
     assert "max-width: 220px !important" in css
     assert "max-width: 320px !important" in css
+
+
+def test_upgrade_card_and_button_form_one_unit() -> None:
+    css = _css()
+
+    assert "border-radius: 8px 8px 0 0" in css
+    assert "border-bottom: none" in css
+    assert "border-radius: 0 0 8px 8px !important" in css
+    assert "background-color: var(--srn-hover-bg) !important" in css
+
+
+def test_search_icon_is_themed() -> None:
+    css = _css()
+
+    assert "[data-testid='stTextInputIcon']" in css
 
 
 def test_rail_controls_center_icons() -> None:

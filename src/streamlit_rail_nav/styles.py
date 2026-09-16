@@ -376,10 +376,11 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
             }}
 
             section[data-testid='stSidebar'] .srn-upgrade-card {{
-                margin: 8px 12px;
-                padding: 12px;
-                border-radius: 8px;
+                margin: 8px 12px 0 12px;
+                padding: 12px 12px 8px 12px;
+                border-radius: 8px 8px 0 0;
                 border: 1px solid var(--srn-separator-color);
+                border-bottom: none;
                 background-color: var(--srn-hover-bg);
             }}
 
@@ -432,8 +433,16 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 color: var(--srn-text) !important;
                 opacity: 0.6 !important;
             }}
-            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-testid='stIconMaterial'] {{
+            /* The leading icon renders inside a stTextInputIcon wrapper;
+               cover both that wrapper and the Material glyph itself so the
+               icon is never left at the BaseWeb default (near-invisible on
+               a themed background). */
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-testid='stTextInputIcon'],
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-testid='stIconMaterial'],
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-testid='stTextInputIcon'] svg {{
                 color: var(--srn-icon) !important;
+                fill: var(--srn-icon) !important;
+                opacity: 0.8 !important;
                 font-size: 18px !important;
             }}
 
@@ -451,25 +460,25 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 justify-content: center !important;
             }}
 
-            /* Button directly after an upgrade card renders as a CTA. Use
-               both the :has() sibling relationship and the widget's
-               "st-key-<key>" class as a fallback for browsers without
-               :has() support. */
+            /* Button directly after an upgrade card attaches to its bottom
+               edge, so card + button read as one component. Use both the
+               :has() sibling relationship and the widget's "st-key-<key>"
+               class as a fallback for browsers without :has() support. */
             section[data-testid='stSidebar'] [data-testid='stElementContainer']:has(.srn-upgrade-card)
                 + [data-testid='stElementContainer'],
             section[data-testid='stSidebar']:hover [class*='st-key-srn_upgrade_'] {{
-                width: calc(100% - 32px) !important;
+                width: calc(100% - 24px) !important;
                 max-width: 320px !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-                padding-top: 8px !important;
+                margin: 0 12px 8px 12px !important;
+                padding-top: 0 !important;
             }}
             section[data-testid='stSidebar'] [data-testid='stElementContainer']:has(.srn-upgrade-card)
                 + [data-testid='stElementContainer'] .stButton button,
             section[data-testid='stSidebar']:hover [class*='st-key-srn_upgrade_'] button {{
                 width: 100% !important;
                 height: 42px !important;
-                background-color: var(--srn-bg) !important;
+                border-radius: 0 0 8px 8px !important;
+                background-color: var(--srn-hover-bg) !important;
                 border: 1px solid var(--srn-separator-color) !important;
                 justify-content: center !important;
             }}
