@@ -238,6 +238,13 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 display: none !important;
             }}
 
+            /* CTA button paired with a hidden upgrade card */
+            section[data-testid='stSidebar']:not(:hover)
+                [data-testid='stElementContainer']:has(.srn-upgrade-card)
+                + [data-testid='stElementContainer'] {{
+                display: none !important;
+            }}
+
             section[data-testid='stSidebar']:not(:hover) .stButton {{
                 padding: 0 !important;
                 margin: 0 !important;
@@ -353,25 +360,24 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
             }}
 
             /* Search input blends into the sidebar palette */
-            section[data-testid='stSidebar'] [data-testid='stTextInput'] input {{
-                background-color: var(--srn-hover-bg) !important;
-                color: var(--srn-text) !important;
-                border-color: var(--srn-separator-color) !important;
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] > div > div {{
+                background-color: var(--srn-bg) !important;
+                border: 1px solid var(--srn-separator-color) !important;
                 border-radius: 8px !important;
+            }}
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] input {{
+                background-color: transparent !important;
+                color: var(--srn-text) !important;
             }}
             section[data-testid='stSidebar'] [data-testid='stTextInput'] input::placeholder {{
                 color: var(--srn-text) !important;
                 opacity: 0.6 !important;
             }}
-            section[data-testid='stSidebar'] [data-testid='stTextInput'] > div > div {{
-                background-color: transparent !important;
-                border: none !important;
-            }}
 
             /* Button directly after an upgrade card renders as a CTA */
             section[data-testid='stSidebar'] [data-testid='stElementContainer']:has(.srn-upgrade-card)
                 + [data-testid='stElementContainer'] .stButton button {{
-                background-color: var(--srn-hover-bg) !important;
+                background-color: var(--srn-bg) !important;
                 border: 1px solid var(--srn-separator-color) !important;
                 justify-content: center !important;
             }}
