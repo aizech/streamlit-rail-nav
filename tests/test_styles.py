@@ -129,7 +129,7 @@ def test_custom_items_have_explicit_spacing() -> None:
 def test_search_uses_native_input_surface_and_visible_icon() -> None:
     css = _css()
 
-    assert "[data-baseweb='input']" in css
+    assert "[data-baseweb='base-input']" in css
     assert "[data-testid='stIconMaterial']" in css
     assert "height: 40px !important" in css
     assert "max-width: 320px !important" in css
@@ -141,6 +141,8 @@ def test_expanded_custom_controls_use_compact_widths() -> None:
 
     assert ".srn-menu-header" in css
     assert "margin: 4px 0 8px" in css
+    assert "st-key-srn_theme_toggle_" in css
+    assert "st-key-srn_upgrade_" in css
     assert "max-width: 220px !important" in css
     assert "max-width: 320px !important" in css
 

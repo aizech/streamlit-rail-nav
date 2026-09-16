@@ -411,10 +411,7 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 max-width: 320px !important;
                 margin: 4px auto !important;
             }}
-            section[data-testid='stSidebar'] [data-testid='stTextInput'] > div {{
-                background-color: var(--srn-bg) !important;
-            }}
-            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-baseweb='input'] {{
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-baseweb='base-input'] {{
                 height: 40px !important;
                 min-height: 40px !important;
                 background-color: var(--srn-bg) !important;
@@ -422,7 +419,7 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 border-radius: 8px !important;
                 box-shadow: none !important;
             }}
-            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-baseweb='input'] > div {{
+            section[data-testid='stSidebar'] [data-testid='stTextInput'] [data-baseweb='base-input'] > div {{
                 background-color: transparent !important;
             }}
             section[data-testid='stSidebar'] [data-testid='stTextInput'] input {{
@@ -440,17 +437,27 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 font-size: 18px !important;
             }}
 
-            /* Keep icon-only theme controls compact when expanded. */
-            section[data-testid='stSidebar']:hover
-                [data-testid='stElementContainer']:has(.stButton button [data-testid='stIconMaterial']) {{
+            /* Keep the theme-toggle button compact when expanded. Target
+               Streamlit's "st-key-<key>" class (derived from our widget
+               key) rather than :has(), which older embedded browsers may
+               not support. */
+            section[data-testid='stSidebar']:hover [class*='st-key-srn_theme_toggle_'] {{
                 width: calc(100% - 32px) !important;
                 max-width: 220px !important;
                 margin: 4px auto !important;
             }}
+            section[data-testid='stSidebar']:hover [class*='st-key-srn_theme_toggle_'] button {{
+                width: 100% !important;
+                justify-content: center !important;
+            }}
 
-            /* Button directly after an upgrade card renders as a CTA */
+            /* Button directly after an upgrade card renders as a CTA. Use
+               both the :has() sibling relationship and the widget's
+               "st-key-<key>" class as a fallback for browsers without
+               :has() support. */
             section[data-testid='stSidebar'] [data-testid='stElementContainer']:has(.srn-upgrade-card)
-                + [data-testid='stElementContainer'] {{
+                + [data-testid='stElementContainer'],
+            section[data-testid='stSidebar']:hover [class*='st-key-srn_upgrade_'] {{
                 width: calc(100% - 32px) !important;
                 max-width: 320px !important;
                 margin-left: auto !important;
@@ -458,7 +465,9 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 padding-top: 8px !important;
             }}
             section[data-testid='stSidebar'] [data-testid='stElementContainer']:has(.srn-upgrade-card)
-                + [data-testid='stElementContainer'] .stButton button {{
+                + [data-testid='stElementContainer'] .stButton button,
+            section[data-testid='stSidebar']:hover [class*='st-key-srn_upgrade_'] button {{
+                width: 100% !important;
                 height: 42px !important;
                 background-color: var(--srn-bg) !important;
                 border: 1px solid var(--srn-separator-color) !important;
