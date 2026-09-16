@@ -232,6 +232,13 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 margin: 0 !important;
                 flex: 0 0 auto !important;
             }}
+            /* Material glyphs have asymmetric internal whitespace. Offset
+               button icons slightly so the visible glyph shares the same
+               centerline as the SVG page-link icons. */
+            section[data-testid='stSidebar']:not(:hover)
+                .stButton button [data-testid='stIconMaterial'] {{
+                transform: translateX(4px) !important;
+            }}
 
             /* Override Streamlit default 16px gap between sidebar items */
             section[data-testid='stSidebar'] [data-testid='stVerticalBlock'] {{

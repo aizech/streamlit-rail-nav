@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from streamlit_rail_nav import normalize_settings
 from streamlit_rail_nav.styles import (
+    BRAND_CSS,
     build_badge_css,
     build_brand_icon_css,
     build_rail_css,
@@ -140,3 +141,11 @@ def test_rail_controls_center_icons() -> None:
     assert "[data-testid='stIconMaterial']" in css
     assert "a > div" in css
     assert "button > div" in css
+    assert "transform: translateX(4px) !important" in css
+
+
+def test_brand_assets_switch_between_rail_and_expanded_states() -> None:
+    assert ".srn-brand-icon" in BRAND_CSS
+    assert ".srn-brand-logo" in BRAND_CSS
+    assert ":hover .srn-brand-icon" in BRAND_CSS
+    assert ":not(:hover) .srn-brand-logo" in BRAND_CSS

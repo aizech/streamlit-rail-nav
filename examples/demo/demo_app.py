@@ -7,6 +7,8 @@ Run from the package root:
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import streamlit as st
 
 from streamlit_rail_nav import THEME_PRESETS, render
@@ -22,6 +24,10 @@ preset_name = st.session_state.get("preset", "Slate Orange")
 
 config = {
     **THEME_PRESETS.get(preset_name, {}),
+    "logo_src_light": "assets/logo_light.png",
+    "logo_src_dark": "assets/logo_dark.png",
+    "icon_src_light": "assets/icon_light.png",
+    "icon_src_dark": "assets/icon_dark.png",
     "items": [
         {"kind": "link", "label": "Home", "icon": "home", "page": "demo_app.py"},
         {
@@ -73,6 +79,7 @@ def _search(query: str) -> None:
 
 render(
     config,
+    base_path=Path(__file__).parent,
     on_theme_toggle=_toggle_theme,
     on_search=_search,
     on_upgrade_click=lambda: st.toast("Upgrade clicked!"),
