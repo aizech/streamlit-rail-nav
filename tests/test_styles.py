@@ -131,3 +131,12 @@ def test_search_uses_native_input_surface_and_visible_icon() -> None:
     assert "[data-baseweb='input']" in css
     assert "[data-testid='stIconMaterial']" in css
     assert "height: 40px !important" in css
+
+
+def test_rail_controls_center_icons() -> None:
+    css = _css()
+
+    assert "margin-inline: auto !important" in css
+    assert "[data-testid='stIconMaterial']" in css
+    assert "a > div" in css
+    assert "button > div" in css

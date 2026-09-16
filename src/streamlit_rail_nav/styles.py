@@ -205,11 +205,32 @@ def build_rail_css(cfg: Mapping[str, Any]) -> str:
                 align-items: center !important;
                 padding: 0 !important;
                 width: var(--srn-collapsed-width) !important;
-                height:42px !important;
-                margin: 0 !important;
+                height: 42px !important;
+                margin: 0 auto !important;
+                margin-inline: auto !important;
                 gap: 0 !important;
                 border-radius: 8px !important;
                 padding-left: 0 !important;
+                text-align: center !important;
+            }}
+
+            /* Streamlit wraps page-link and button contents in an inner div;
+               center that wrapper too so hidden labels cannot offset icons. */
+            section[data-testid='stSidebar']:not(:hover) [data-testid='stPageLink'] a > div,
+            section[data-testid='stSidebar']:not(:hover) .stButton button > div {{
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 100% !important;
+                margin: 0 auto !important;
+                gap: 0 !important;
+            }}
+
+            section[data-testid='stSidebar']:not(:hover) [data-testid='stPageLink'] a svg,
+            section[data-testid='stSidebar']:not(:hover) .stButton button svg,
+            section[data-testid='stSidebar']:not(:hover) [data-testid='stIconMaterial'] {{
+                margin: 0 !important;
+                flex: 0 0 auto !important;
             }}
 
             /* Override Streamlit default 16px gap between sidebar items */
