@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0] - Unreleased
+## [0.1.0] - 2026-09-17
 
 ### Added
 
@@ -22,13 +22,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Optional callbacks: `on_theme_toggle`, `on_search`, `on_upgrade_click`.
 - `hide_default_nav` (default on) hides Streamlit's auto-generated multipage
   navigation so it does not duplicate custom menu items.
+- Demo branding assets (light/dark logo and icon) in `examples/demo`.
+- README: live demo link, author/company attribution, and an animated GIF
+  preview of the rail in collapsed and expanded states.
 
 ### Fixed
 
 - Badges (`badge_link` / `link` `badge`) no longer render while the sidebar is
   collapsed into the rail.
 - Sidebar `search` inputs and `upgrade_card` buttons are themed to match the
-  configured sidebar palette.
+  configured sidebar palette; the search input's background/border are now
+  applied to Streamlit's stable outer `stTextInput` container instead of a
+  BaseWeb internal attribute that varies across Streamlit versions.
 - `sidebar_hover_text_color` is now actually applied to the rollover text and
   icon color; it was defined per preset but never wired into the generated
   CSS.
@@ -36,6 +41,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   loud accent color, fixing poor text/icon contrast (and, for `Cadet Yam`,
   an icon that was the same color as its own active background).
 - Updated `Anthropic Style` to match Anthropic's public brand guidelines.
+- Stabilized the sidebar's top padding so the first icon no longer jumps
+  vertically between the collapsed and expanded states.
+- Centered all collapsed rail icons, including the `theme_toggle` glyph,
+  which has asymmetric internal whitespace.
+- Compacted the expanded `search`, `theme_toggle`, and `upgrade_card`
+  controls, and merged the upgrade card and its button into a single visual
+  unit.
 
 ### Changed
 
