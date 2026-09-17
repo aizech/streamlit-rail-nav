@@ -3,6 +3,8 @@
 A collapsible **icon-rail sidebar navigation** for Streamlit that expands on
 hover — pure Python, no frontend build.
 
+**[Live demo →](https://st-rail-nav.streamlit.app/)**
+
 Inspired by the archived
 [Socvest/streamlit-on-Hover-tabs](https://github.com/Socvest/streamlit-on-Hover-tabs)
 project, but implemented differently under the hood: instead of rendering tabs
@@ -155,6 +157,17 @@ render({**THEME_PRESETS["Ocean Palette"], "items": [...]})
 
 ## Demo
 
+Try it live: **[st-rail-nav.streamlit.app](https://st-rail-nav.streamlit.app/)**
+
+<!--
+Video demo (drag-and-drop the .mp4 into this file on github.com to get a
+github user-attachments URL, then replace the src below):
+
+https://github.com/user-attachments/assets/REPLACE-ME
+-->
+
+Or run it locally:
+
 ```bash
 pip install -e .
 streamlit run examples/demo/demo_app.py
@@ -168,6 +181,11 @@ pytest
 black . && ruff check .
 python -m build
 ```
+
+## Author
+
+Built by [Bernhard Zechmann](https://www.zechmann.de) ([@aizech](https://github.com/aizech))
+at [Corpus Analytica](https://www.corpusanalytica.com).
 
 ## License
 
