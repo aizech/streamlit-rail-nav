@@ -159,12 +159,10 @@ render({**THEME_PRESETS["Ocean Palette"], "items": [...]})
 
 Try it live: **[st-rail-nav.streamlit.app](https://st-rail-nav.streamlit.app/)**
 
-<!--
-Video demo (drag-and-drop the .mp4 into this file on github.com to get a
-github user-attachments URL, then replace the src below):
-
-https://github.com/user-attachments/assets/REPLACE-ME
--->
+<video src="https://github.com/aizech/streamlit-rail-nav/raw/main/assets/st-rail-nav-demo.mp4" controls muted playsinline width="100%">
+  Your browser does not support inline video —
+  <a href="assets/st-rail-nav-demo.mp4">watch the demo clip</a> directly.
+</video>
 
 Or run it locally:
 
