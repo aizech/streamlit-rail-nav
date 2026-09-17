@@ -21,7 +21,7 @@ client-side, preserves session state, and needs no JS toolchain.
 - Item kinds: `link`, `badge_link`, `separator`, `spacer`, `header`,
   `theme_toggle`, `search`, `upgrade_card`, `user_profile`
 - Per-item `access` levels (normalized for you; filtered caller-side)
-- Nine built-in theme presets
+- Eight built-in theme presets
 - Plain-dict config — round-trips cleanly with JSON persistence
 
 ## Install
