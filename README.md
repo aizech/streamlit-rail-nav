@@ -1,5 +1,9 @@
 # streamlit-rail-nav
 
+[![PyPI version](https://img.shields.io/pypi/v/streamlit-rail-nav.svg)](https://pypi.org/project/streamlit-rail-nav/)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A collapsible **icon-rail sidebar navigation** for Streamlit that expands on
 hover — pure Python, no frontend build.
 
